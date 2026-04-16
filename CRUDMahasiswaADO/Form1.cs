@@ -8,7 +8,7 @@ namespace CRUDMahasiswaADO
     {
         private readonly SqlConnection conn;
         private readonly string connectionString =
-            "Data Sourche=MONO\\MONO_INDRA;Initial Catalog=DBAkademikADO;Integrated Security=True";
+            "Data Source=MONO\\MONO_INDRA;Initial Catalog=DBAkademikADO;Integrated Security=True";
         public Form1()
         {
             InitializeComponent();
@@ -20,9 +20,26 @@ namespace CRUDMahasiswaADO
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ConnectDatabase()
         {
+            try
+            {
+                if (conn.State == System.Data.ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
 
+                MessageBox.Show("Koneksi Berhasil!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Koneksi Gagal: " + ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ConnectDatabase();
         }
     }
 }
