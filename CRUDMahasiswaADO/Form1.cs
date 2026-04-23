@@ -131,7 +131,7 @@ namespace CRUDMahasiswaADO
 
                 cmd.Parameters.AddWithValue("@NIM", txtNIM.Text);
                 cmd.Parameters.AddWithValue("@Nama", txtNama.Text);
-                cmd.Parameters.AddWithValue("@JK", cmbJK.Text);
+                cmd.Parameters.AddWithValue("@JenisKelamin", cmbJK.Text);
                 cmd.Parameters.AddWithValue("@TanggalLahir", dtpTanggalLahir.Value.Date);
                 cmd.Parameters.AddWithValue("@Alamat", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("@KodeProdi", txtKodeProdi.Text);
@@ -167,7 +167,7 @@ namespace CRUDMahasiswaADO
 
                 string query = @"UPDATE Mahasiswa
                                   SET Nama = @Nama,
-                                      JenisKelamin = @JK,
+                                      JenisKelamin = @JenisKelamin,
                                       TaggalLahir = @TanggalLahir,
                                       Alamat = @Alamat,
                                       KodeProdi = @KodeProdi
@@ -177,7 +177,7 @@ namespace CRUDMahasiswaADO
 
                 cmd.Parameters.AddWithValue("@NIM", txtNIM.Text);
                 cmd.Parameters.AddWithValue("@Nama", txtNama.Text);
-                cmd.Parameters.AddWithValue("@JK", cmbJK.Text);
+                cmd.Parameters.AddWithValue("@JenisKelamin", cmbJK.Text);
                 cmd.Parameters.AddWithValue("@TanggalLahir", dtpTanggalLahir.Value.Date);
                 cmd.Parameters.AddWithValue("@Alamat", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("@KodeProdi", txtKodeProdi.Text);
