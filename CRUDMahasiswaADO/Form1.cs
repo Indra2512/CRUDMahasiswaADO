@@ -132,7 +132,7 @@ namespace CRUDMahasiswaADO
                 cmd.Parameters.AddWithValue("@NIM", txtNIM.Text);
                 cmd.Parameters.AddWithValue("@Nama", txtNama.Text);
                 cmd.Parameters.AddWithValue("@JK", cmbJK.Text);
-                cmd.Parameters.AddWithValue("@TanggalLahir", dtpTanggalLahir.Value, Date);
+                cmd.Parameters.AddWithValue("@TanggalLahir", dtpTanggalLahir.Value.Date);
                 cmd.Parameters.AddWithValue("@Alamat", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("@KodeProdi", txtKodeProdi.Text);
                 cmd.Parameters.AddWithValue("@TanggalDaftar", DateTime.Now);
@@ -192,8 +192,13 @@ namespace CRUDMahasiswaADO
                 }
                 else
                 {
-                    MessageBox.Show("Terjadi Kesalahan: " + ex.Message);
+                    MessageBox.Show("Data tidak ditemukan");
                 }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi Kesalahan: " + ex.Message);
             }
         }
 
@@ -259,6 +264,23 @@ namespace CRUDMahasiswaADO
             cmbJK.SelectedIndex = -1;
             txtAlamat.Clear();
             txtKodeProdi.Clear();
-            dtpTaggalLahir.Value = DateTime.Now;
+            dtpTanggalLahir.Value = DateTime.Now;
             txtNIM.Focus();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cmbJK.Items.Clear();
+            cmbJK.Items.Add("L");
+            cmbJK.Items.Add("P");
+
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridView1.CellClick += dataGridView1_CellContentClick;
+        }
+    }
+}
