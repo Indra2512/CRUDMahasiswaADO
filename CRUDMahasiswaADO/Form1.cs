@@ -168,7 +168,7 @@ namespace CRUDMahasiswaADO
                 string query = @"UPDATE Mahasiswa
                                   SET Nama = @Nama,
                                       JenisKelamin = @JenisKelamin,
-                                      TaggalLahir = @TanggalLahir,
+                                      TanggalLahir = @TanggalLahir,
                                       Alamat = @Alamat,
                                       KodeProdi = @KodeProdi
                                     WHERE NIM = @NIM";
