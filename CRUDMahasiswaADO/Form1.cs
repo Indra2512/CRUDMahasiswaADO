@@ -288,7 +288,7 @@ namespace CRUDMahasiswaADO
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        SqlParameter outputParam = new SqlParameter("@Total", SqlDbType.int);
+                        SqlParameter outputParam = new SqlParameter("@Total", SqlDbType.Int);
                         outputParam.Direction = ParameterDirection.Output;
                         cmd.Parameters.Add(outputParam);
 
