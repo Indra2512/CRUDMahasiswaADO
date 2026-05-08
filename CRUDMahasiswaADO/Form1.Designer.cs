@@ -65,6 +65,7 @@
             this.mahasiswaTableAdapter = new CRUDMahasiswaADO.DBAkademikADODataSetTableAdapters.MahasiswaTableAdapter();
             this.btnResetData = new System.Windows.Forms.Button();
             this.btnTestInjection = new System.Windows.Forms.Button();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mahasiswaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBAkademikADODataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -389,11 +390,21 @@
             this.btnTestInjection.UseVisualStyleBackColor = true;
             this.btnTestInjection.Click += new System.EventHandler(this.btnTestInjection_Click);
             // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(935, 242);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(51, 20);
+            this.lblTotal.TabIndex = 21;
+            this.lblTotal.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1326, 600);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnTestInjection);
             this.Controls.Add(this.btnResetData);
             this.Controls.Add(this.bindingNavigator1);
@@ -466,6 +477,7 @@
         private DBAkademikADODataSetTableAdapters.MahasiswaTableAdapter mahasiswaTableAdapter;
         private System.Windows.Forms.Button btnResetData;
         private System.Windows.Forms.Button btnTestInjection;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
 
