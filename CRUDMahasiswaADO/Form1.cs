@@ -103,6 +103,7 @@ namespace CRUDMahasiswaADO
                         conn.Close();
                     }
                     MessageBox.Show("Data berhasil diupdate");
+                    LoadData();
                   
                 }
             }
