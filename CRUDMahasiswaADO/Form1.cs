@@ -68,6 +68,14 @@ namespace CRUDMahasiswaADO
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
+
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+
+                    MessageBox.Show("Data berhasil ditambahkan");
+                    LoadData();
                 }
             }
             catch (Exception ex)
