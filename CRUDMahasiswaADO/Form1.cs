@@ -94,9 +94,17 @@ namespace CRUDMahasiswaADO
                     LoadData();
                 }
             }
+            catch (SqlException ex)
+            {
+                SimpanLog(ex.Message);
+
+                MessageBox.Show("SQL Error : " + ex.Message);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                SimpanLog(ex.Message);
+
+                MessageBox.Show("General Error : " + ex.Message);
             }
 
            
