@@ -293,28 +293,32 @@ namespace CRUDMahasiswaADO
 
         private void btnTestInjection_Click(object sender, EventArgs e)
         {
-            try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                try
                 {
-                    conn.Open();
-
-                    string query =
-                        "UPDATE Mahasiswa SET Nama = 'HACKED' WHERE NIM = '" +
+                    using (SqlConnection conn =
+                        new SqlConnection(connectionString))
+                    {
+                        string query =
+                        "SELECT * FROM Mahasiswa SET Nama='" +
+                        txtNama.Text +
+                        "' WHERE NIM='" +
                         txtNIM.Text + "'";
 
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        int result = cmd.ExecuteNonQuery();
-                        MessageBox.Show(result + " baris terupdate");
+                        SqlCommand cmd =
+                        new SqlCommand(query, conn);
+
+                        conn.Open();
+
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Update berhasil");
                     }
                 }
-
-                LoadData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
