@@ -101,7 +101,7 @@ namespace CRUDMahasiswaADO
                     cmbJK.Text);
 
                 cmd.Parameters.AddWithValue(
-                    "@TangggalLahir",
+                    "@TanggalLahir",
                     dtpTanggalLahir.Value.Date);
 
                 cmd.Parameters.AddWithValue(
