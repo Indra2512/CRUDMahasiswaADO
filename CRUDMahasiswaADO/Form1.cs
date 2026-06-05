@@ -344,7 +344,7 @@ namespace CRUDMahasiswaADO
                         new SqlConnection(connectionString))
                     {
                         string query =
-                        "SELECT * FROM Mahasiswa SET Nama='" +
+                        "UPDATE Mahasiswa SET Nama='" +
                         txtNama.Text +
                         "' WHERE NIM='" +
                         txtNIM.Text + "'";
