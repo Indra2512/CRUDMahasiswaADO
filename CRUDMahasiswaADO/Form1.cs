@@ -93,7 +93,7 @@ namespace CRUDMahasiswaADO
                     txtNIM.Text);
 
                 cmd.Parameters.AddWithValue(
-                    "@Nama.",
+                    "@Nama",
                     txtNama.Text);
 
                 cmd.Parameters.AddWithValue(
