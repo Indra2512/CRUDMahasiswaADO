@@ -69,45 +69,91 @@ namespace CRUDMahasiswaADO
 
         private void button3_Click(object sender, EventArgs e)
         {
+            SqlConnection conn =
+      new SqlConnection(connectionString);
+
+            conn.Open();
+
+            SqlTransaction trans =
+                conn.BeginTransaction();
+
             try
             {
-               using (SqlCommand cmd = new SqlCommand("sp_InsertMahasiswa", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@NIM", txtNIM.Text);
-                    cmd.Parameters.AddWithValue("@Nama", txtNama.Text);
-                    cmd.Parameters.AddWithValue("@JenisKelamin", cmbJK.Text);
-                    cmd.Parameters.AddWithValue("@TanggalLahir", dtpTanggalLahir.Value.Date);
-                    cmd.Parameters.AddWithValue("@Alamat", txtAlamat.Text);
-                    cmd.Parameters.AddWithValue("@KodeProdi", txtKodeProdi.Text);
-                    cmd.Parameters.AddWithValue("@TanggalDaftar", DateTime.Now);
+                SqlCommand cmd =
+                    new SqlCommand(
+                    "sp_InsertMahasiswa",
+                    conn,
+                    trans);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                cmd.CommandType =
+                    CommandType.StoredProcedure;
 
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        conn.Close();
-                    }
+                cmd.Parameters.AddWithValue(
+                    "@NIM",
+                    txtNIM.Text);
 
-                    MessageBox.Show("Data berhasil ditambahkan");
-                    LoadData();
-                }
-            }
-            catch (SqlException ex)
-            {
-                SimpanLog(ex.Message);
+                cmd.Parameters.AddWithValue(
+                    "@Nama.",
+                    txtNama.Text);
 
-                MessageBox.Show("SQL Error : " + ex.Message);
+                cmd.Parameters.AddWithValue(
+                    "@JenisKelamin",
+                    cmbJK.Text);
+
+                cmd.Parameters.AddWithValue(
+                    "@TangggalLahir",
+                    dtpTanggalLahir.Value.Date);
+
+                cmd.Parameters.AddWithValue(
+                    "@Alamat",
+                    txtAlamat.Text);
+
+                cmd.Parameters.AddWithValue(
+                    "@KodeProdi",
+                    txtKodeProdi.Text);
+
+                cmd.Parameters.AddWithValue(
+                    "@TanggalDaftar",
+                    DateTime.Now);
+
+                cmd.ExecuteNonQuery();
+
+                SqlCommand cmdLog =
+                    new SqlCommand(
+                        "INSERT INTO LogAktivitasSalah (aktivitas, waktu) VALUES (@aktivitas, GETDATE())",
+                        conn,
+                        trans);
+
+                cmdLog.Parameters.AddWithValue(
+                    "@aktivitas",
+                    "INSERT MAHASISWA : " +
+                    txtNIM.Text);
+
+                cmdLog.ExecuteNonQuery();
+
+                trans.Commit();
+
+                MessageBox.Show(
+                    "Data berhasil ditambahkan");
+
+                LoadData();
+
             }
             catch (Exception ex)
             {
-                SimpanLog(ex.Message);
+                trans.Rollback();
 
-                MessageBox.Show("General Error : " + ex.Message);
+                SimpanLog(
+                    "GENERAL ERROR : " +
+                    ex.Message);
+
+                MessageBox.Show(
+                    ex.Message);
             }
-
-           
+            finally
+            {
+                conn.Close();
+            }
         }
    
         
