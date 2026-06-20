@@ -75,8 +75,22 @@ namespace CRUDMahasiswaADO
                 HitungTotal();
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
-                    Console.WriteLine("Name: " col.Name + " | DataPropertyName: " + col.DataPropertyName);
+                    Console.WriteLine("Name: " + col.Name + " | DataPropertyName: " + col.DataPropertyName);
                 }
+                dataGridView1.Enabled = true;
+                btnImpDB.Enabled = false;
+                button3.Enabled = true;
+                button4.Enabled = true;
+                button5.Enabled = true;
+                btnCari.Enabled = true;
+                btnLoad.Enabled = true;
+                btnResetData.Enabled = true;
+                btnTestInjection.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                SimpanLog(ex.Message);
+                MessageBox.Show("Gagal load data: " + ex.Message);
             }
         }
 
