@@ -66,11 +66,19 @@
             this.btnResetData = new System.Windows.Forms.Button();
             this.btnTestInjection = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.btnRekapData = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mahasiswaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBAkademikADODataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // NIM
@@ -201,51 +209,51 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(548, 40);
+            this.button1.Location = new System.Drawing.Point(820, 40);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 39);
+            this.button1.Size = new System.Drawing.Size(135, 39);
             this.button1.TabIndex = 13;
-            this.button1.Text = "Membuka Koneksi";
+            this.button1.Text = "Open";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(548, 88);
+            this.btnLoad.Location = new System.Drawing.Point(820, 151);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(172, 39);
+            this.btnLoad.Size = new System.Drawing.Size(135, 39);
             this.btnLoad.TabIndex = 14;
-            this.btnLoad.Text = "Menampilkan Data";
+            this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(548, 142);
+            this.button3.Location = new System.Drawing.Point(820, 97);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(172, 39);
+            this.button3.Size = new System.Drawing.Size(135, 39);
             this.button3.TabIndex = 15;
-            this.button3.Text = "Menambah Data";
+            this.button3.Text = "Insert";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(548, 198);
+            this.button4.Location = new System.Drawing.Point(820, 208);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(172, 39);
+            this.button4.Size = new System.Drawing.Size(135, 39);
             this.button4.TabIndex = 16;
-            this.button4.Text = "Mengubah Data";
+            this.button4.Text = "Update";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(548, 257);
+            this.button5.Location = new System.Drawing.Point(820, 271);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(172, 39);
+            this.button5.Size = new System.Drawing.Size(135, 39);
             this.button5.TabIndex = 17;
-            this.button5.Text = "Menghapus Data";
+            this.button5.Text = "Delete";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -372,38 +380,109 @@
             // 
             // btnResetData
             // 
-            this.btnResetData.Location = new System.Drawing.Point(898, 49);
+            this.btnResetData.BackColor = System.Drawing.Color.Red;
+            this.btnResetData.Location = new System.Drawing.Point(1010, 49);
             this.btnResetData.Name = "btnResetData";
             this.btnResetData.Size = new System.Drawing.Size(108, 40);
             this.btnResetData.TabIndex = 19;
             this.btnResetData.Text = "ResetData";
-            this.btnResetData.UseVisualStyleBackColor = true;
+            this.btnResetData.UseVisualStyleBackColor = false;
             this.btnResetData.Click += new System.EventHandler(this.btnResetData_Click);
             // 
             // btnTestInjection
             // 
-            this.btnTestInjection.Location = new System.Drawing.Point(898, 113);
+            this.btnTestInjection.BackColor = System.Drawing.Color.Chartreuse;
+            this.btnTestInjection.Location = new System.Drawing.Point(1010, 97);
             this.btnTestInjection.Name = "btnTestInjection";
             this.btnTestInjection.Size = new System.Drawing.Size(108, 40);
             this.btnTestInjection.TabIndex = 20;
             this.btnTestInjection.Text = "Test";
-            this.btnTestInjection.UseVisualStyleBackColor = true;
+            this.btnTestInjection.UseVisualStyleBackColor = false;
             this.btnTestInjection.Click += new System.EventHandler(this.btnTestInjection_Click);
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(935, 242);
+            this.lblTotal.Location = new System.Drawing.Point(928, 345);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(51, 20);
             this.lblTotal.TabIndex = 21;
             this.lblTotal.Text = "label1";
+            // 
+            // crystalReportViewer1
+            // 
+            this.crystalReportViewer1.ActiveViewIndex = -1;
+            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.crystalReportViewer1.Name = "crystalReportViewer1";
+            this.crystalReportViewer1.Size = new System.Drawing.Size(150, 150);
+            this.crystalReportViewer1.TabIndex = 0;
+            // 
+            // btnRekapData
+            // 
+            this.btnRekapData.Location = new System.Drawing.Point(1010, 151);
+            this.btnRekapData.Name = "btnRekapData";
+            this.btnRekapData.Size = new System.Drawing.Size(108, 44);
+            this.btnRekapData.TabIndex = 22;
+            this.btnRekapData.Text = "Rekap Data";
+            this.btnRekapData.UseVisualStyleBackColor = true;
+            this.btnRekapData.Click += new System.EventHandler(this.btnRekapData_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(412, 43);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 33);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Cari";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(591, 314);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(150, 38);
+            this.button6.TabIndex = 24;
+            this.button6.Text = "Upload Gambar";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(591, 148);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 160);
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(1010, 203);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(108, 56);
+            this.button7.TabIndex = 26;
+            this.button7.Text = "Import from Excel";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(1010, 271);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(108, 56);
+            this.button8.TabIndex = 27;
+            this.button8.Text = "Import to Database";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1326, 600);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnRekapData);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnTestInjection);
             this.Controls.Add(this.btnResetData);
@@ -435,6 +514,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,6 +558,13 @@
         private System.Windows.Forms.Button btnResetData;
         private System.Windows.Forms.Button btnTestInjection;
         private System.Windows.Forms.Label lblTotal;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        private System.Windows.Forms.Button btnRekapData;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }
 

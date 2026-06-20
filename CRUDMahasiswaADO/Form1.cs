@@ -8,6 +8,7 @@ namespace CRUDMahasiswaADO
 {
     public partial class Form1 : Form
     {
+        DAL dbLogic = new DAL();
         private readonly SqlConnection conn;
         private readonly string connectionString =
             "Data Source=MONO\\MONO_INDRA;Initial Catalog=DBAkademikADO;Integrated Security=True";
@@ -64,7 +65,19 @@ namespace CRUDMahasiswaADO
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LoadData();
+            try
+            {
+                bindingSource1.DataSource = dbLogic.GetMhs();
+                dataGridView1.DataSource = bindingSource1;
+                DataGridViewImageColumn fotoColumn = (DataGridViewImageColumn)dataGridView1.Columns["Foto"];
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+
+                HitungTotal();
+                foreach (DataGridViewColumn col in dataGridView1.Columns)
+                {
+                    Console.WriteLine("Name: " col.Name + " | DataPropertyName: " + col.DataPropertyName);
+                }
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -370,27 +383,22 @@ namespace CRUDMahasiswaADO
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                   using (SqlCommand cmd = new SqlCommand("sp_CountMahasiswa", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                int total = (dbLogic.CountMhs().Equals(DBNull.Value)) ? 0 : dbLogic.CountMhs();
 
-                        SqlParameter outputParam = new SqlParameter("@Total", SqlDbType.Int);
-                        outputParam.Direction = ParameterDirection.Output;
-                        cmd.Parameters.Add(outputParam);
-
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-
-                        lblTotal.Text = "Total Mahasiswa; " + outputParam.Value.ToString();
-                    }
-                }
+                lblTotal.Text = "Total Mahasiswa : " + total;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal hitung total: " + ex.Message);
+                SimpanLog(ex.Message);
+                MessageBox.Show("Gagal load data: " + ex.Message);
             }
+        }
+
+        private void btnRekapData_Click(object sender, EventArgs e)
+        {
+            RekapMahasiswa fm3 = new RekapMahasiswa();
+            fm3.Show();
+            this.Hide();
         }
     }
 }
