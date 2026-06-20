@@ -70,7 +70,7 @@
             this.btnRekapData = new System.Windows.Forms.Button();
             this.btnCari = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.fotoMhs = new System.Windows.Forms.PictureBox();
             this.button7 = new System.Windows.Forms.Button();
             this.btnImpDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mahasiswaBindingSource)).BeginInit();
@@ -78,7 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fotoMhs)).BeginInit();
             this.SuspendLayout();
             // 
             // NIM
@@ -446,13 +446,13 @@
             this.button6.Text = "Upload Gambar";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // fotoMhs
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(591, 148);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 160);
-            this.pictureBox1.TabIndex = 25;
-            this.pictureBox1.TabStop = false;
+            this.fotoMhs.Location = new System.Drawing.Point(591, 148);
+            this.fotoMhs.Name = "fotoMhs";
+            this.fotoMhs.Size = new System.Drawing.Size(150, 160);
+            this.fotoMhs.TabIndex = 25;
+            this.fotoMhs.TabStop = false;
             // 
             // button7
             // 
@@ -479,7 +479,7 @@
             this.ClientSize = new System.Drawing.Size(1326, 600);
             this.Controls.Add(this.btnImpDB);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.fotoMhs);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.btnCari);
             this.Controls.Add(this.btnRekapData);
@@ -514,7 +514,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fotoMhs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -562,7 +562,7 @@
         private System.Windows.Forms.Button btnRekapData;
         private System.Windows.Forms.Button btnCari;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox fotoMhs;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button btnImpDB;
     }

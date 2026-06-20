@@ -60,7 +60,24 @@ namespace CRUDMahasiswaADO
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ConnectDatabase();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(dbLogic.GetConnectionString()))
+                {
+                    conn.Open();
+                    MessageBox.Show("Koneksi Berhasil");
+                }
+            }
+            catch (SqlException ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("SQL Error :" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("General Error :" + ex.Message);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -259,13 +276,19 @@ namespace CRUDMahasiswaADO
 
         private void ClearForm()
         {
+            txtNIM.Enabled = true;
             txtNIM.Clear();
             txtNama.Clear();
             cmbJK.SelectedIndex = -1;
             txtAlamat.Clear();
             txtKodeProdi.Clear();
             dtpTanggalLahir.Value = DateTime.Now;
+            fotoMhs.Image = null;
             txtNIM.Focus();
+        }
+        public void simpanLog(string message)
+        {
+            dbLogic.InsertLog(message);
         }
 
         private void Form1_Load(object sender, EventArgs e)
