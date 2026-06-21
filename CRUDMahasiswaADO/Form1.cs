@@ -464,7 +464,35 @@ namespace CRUDMahasiswaADO
                     DateTime tglLahir;
                     if (!DateTime.TryParse(row["TanggalLahir"].ToString(), out tglLahir))
                         continue;
+
+                    byte[] ConvertImageFromPath(string path)
+                    {
+                        if (string.IsNullOrWhiteSpace(path))
+                            return null;
+                        if (!File.Exists(path))
+                            return null;
+
+                        return File.ReadAllBytes(path);
+                    }
+                    byte[] fotoBytes = ConvertImageFromPath(fotoPath);
+
+                    dbLogic.InsertMhs(nim, nama, alamat, jk, tglLahir, kodeProdi, fotoBytes);
+
+                    sukses++;
                 }
+                MessageBox.Show("Data mahasiswa berhasil ditambahkan");
+                ClearForm();
+                LoadData();
+            }
+            catch (SqlException ex)
+            {
+                simpanLog("Rollback Insert :" + ex.Message);
+                MessageBox.Show("SQL Error :" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                simpanLog("General Error :" + ex.Message);
+                MessageBox.Show("General Error :" + ex.Message);
             }
         }
     }
