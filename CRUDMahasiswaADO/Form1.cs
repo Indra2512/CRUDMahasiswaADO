@@ -63,7 +63,7 @@ namespace CRUDMahasiswaADO
         {
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(dbLogic.GetConnectionString()))
+                using (SqlConnection conn = new SqlConnection(dbLogic.GetConnectionString()))
                 {
                     conn.Open();
                     MessageBox.Show("Koneksi Berhasil");
