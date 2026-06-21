@@ -301,7 +301,22 @@ namespace CRUDMahasiswaADO
 
         private void btnResetData_Click(object sender, EventArgs e)
         {
-         
+            try
+            {
+                dbLogic.resetData();
+                MessageBox.Show("Data berhasil direset");
+                LoadData();
+            }
+            catch (SqlException ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("SQL Error :" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("General Error :" + ex.Message);
+            }
         }
 
         private void btnTestInjection_Click(object sender, EventArgs e)
