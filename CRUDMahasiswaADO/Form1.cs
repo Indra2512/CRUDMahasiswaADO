@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
 using System.Linq.Expressions;
+using System.IO;
 
 namespace CRUDMahasiswaADO
 {
@@ -113,90 +114,32 @@ namespace CRUDMahasiswaADO
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SqlConnection conn =
-      new SqlConnection(connectionString);
-
-            conn.Open();
-
-            SqlTransaction trans =
-                conn.BeginTransaction();
-
             try
             {
-                SqlCommand cmd =
-                    new SqlCommand(
-                    "sp_InsertMahasiswa",
-                    conn,
-                    trans);
-
-                cmd.CommandType =
-                    CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue(
-                    "@NIM",
-                    txtNIM.Text);
-
-                cmd.Parameters.AddWithValue(
-                    "@Nama.",
-                    txtNama.Text);
-
-                cmd.Parameters.AddWithValue(
-                    "@JenisKelamin",
-                    cmbJK.Text);
-
-                cmd.Parameters.AddWithValue(
-                    "@TangggalLahir",
-                    dtpTanggalLahir.Value.Date);
-
-                cmd.Parameters.AddWithValue(
-                    "@Alamat",
-                    txtAlamat.Text);
-
-                cmd.Parameters.AddWithValue(
-                    "@KodeProdi",
-                    txtKodeProdi.Text);
-
-                cmd.Parameters.AddWithValue(
-                    "@TanggalDaftar",
-                    DateTime.Now);
-
-                cmd.ExecuteNonQuery();
-
-                SqlCommand cmdLog =
-                    new SqlCommand(
-                        "INSERT INTO LogAktivitasSalah (aktivitas, waktu) VALUES (@aktivitas, GETDATE())",
-                        conn,
-                        trans);
-
-                cmdLog.Parameters.AddWithValue(
-                    "@aktivitas",
-                    "INSERT MAHASISWA : " +
-                    txtNIM.Text);
-
-                cmdLog.ExecuteNonQuery();
-
-                trans.Commit();
-
-                MessageBox.Show(
-                    "Data berhasil ditambahkan");
-
+                byte[] ConvertImageToBytes(PictureBox pb)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        pb.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        return ms.ToArray();
+                    }
+                }
+                byte[] imgBytes = ConvertImageToBytes(fotoMhs);
+                dbLogic.InsertMhs(txtNIM.Text, txtNama.Text, txtAlamat.Text, cmbJK.Text, dtpTanggalLahir.Value.Date, txtKodeProdi.Text, imgBytes);
+                MessageBox.Show("Data Mahasiswa berhasil ditambahkan");
+                ClearForm();
                 LoadData();
 
             }
+            catch (SqlException ex)
+            {
+                simpanLog("Rollback Insert :" + ex.Message);
+                MessageBox.Show("SQL Error :" + ex.Message);
+            }
             catch (Exception ex)
             {
-                trans.Rollback();
-
-                SimpanLog(
-                    "GENERAL ERROR : " +
-                    ex.Message);
-
-                MessageBox.Show(
-                    ex.Message);
-            }
-            finally
-            {
-                conn.Close();
+                simpanLog("General Error :" + ex.Message);
+                MessageBox.Show("General Error :" + ex.Message);
             }
         }
   
