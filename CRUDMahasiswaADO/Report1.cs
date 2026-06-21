@@ -14,6 +14,7 @@ namespace CRUDMahasiswaADO
 {
     public partial class Report1 : Form
     {
+        DAL dbLogic = new DAL();
         static string connectionString = "Data Source=MONO\\MONO_INDRA;Initial Catalog=DBAkademikADO;User ID=sa;Password=Shirayuki_1225";
 
         SqlConnection conn = new SqlConnection(connectionString);
@@ -33,7 +34,7 @@ namespace CRUDMahasiswaADO
 
             try
             {
-                DataTable dtMahasiswa = dbLogic.GetDataRekap(prodi, tglmasuk);
+                DataTable dtMahasiswa = dbLogic.getDataRekap(prodi, tglmasuk);
 
                 listMahasiswa.SetDataSource(dtMahasiswa);
                 crystalReportViewer1.ReportSource = listMahasiswa;

@@ -124,7 +124,6 @@
             this.chartProdi.Size = new System.Drawing.Size(1012, 435);
             this.chartProdi.TabIndex = 9;
             this.chartProdi.Text = "chart1";
-            this.chartProdi.Click += new System.EventHandler(this.loadDataChart_Click);
             // 
             // Dashboard
             // 

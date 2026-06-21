@@ -417,7 +417,7 @@ namespace CRUDMahasiswaADO
                                 }
                             });
                             DataTable dt = result.Tables[0];
-                            dataGridView1 = DataSource = dt;
+                            dataGridView1.DataSource = dt;
 
                             btnImpDB.Enabled = true;
                             button3.Enabled = false;
