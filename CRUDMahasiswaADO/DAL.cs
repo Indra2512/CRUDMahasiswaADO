@@ -5,14 +5,16 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CRUDMahasiswaADO
 {
     internal class DAL
     {
         static string connectionString = "Data Source=MONO\\MONO_INDRA;Initial Catalog=DBAkademikADO;User ID=sa;Password=Shirayuki_1225;";
-        public string GetConnectionString()
+        public static string GetConnectionString()
         {
+            string connectionString = $"Data Source={GetLocalIPAddress()};Initial Catalog=DBAkademikADO;User ID=sa;Password=Shirayuki_1225;";
             return connectionString;
         }
 
@@ -244,6 +246,28 @@ namespace CRUDMahasiswaADO
             dtMahasiswa = new DataTable();
             da.Fill(dtMahasiswa);
             return dtMahasiswa;
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            string localIP = string.Empty;
+            try
+            {
+                var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+                foreach (var ip in host.AddressList)
+                {
+                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    {
+                        localIP = ip.ToString();
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error getting local IP Address: " + ex.Message);
+            }
+            return localIP;
         }
     }
 }
