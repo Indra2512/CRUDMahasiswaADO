@@ -321,32 +321,29 @@ namespace CRUDMahasiswaADO
 
         private void btnTestInjection_Click(object sender, EventArgs e)
         {
+            try
             {
-                try
+                dbLogic.testInject(txtNIM.Text);
+
+                LoadData();
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("safe"))
                 {
-                    using (SqlConnection conn =
-                        new SqlConnection(connectionString))
-                    {
-                        string query =
-                        "UPDATE Mahasiswa SET Nama='" +
-                        txtNama.Text +
-                        "' WHERE NIM='" +
-                        txtNIM.Text + "'";
-
-                        SqlCommand cmd =
-                        new SqlCommand(query, conn);
-
-                        conn.Open();
-
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Update berhasil");
-                    }
+                    simpanLog(ex.Message);
+                    MessageBox.Show("SQL Error : Unsafe UPDATE operation not allowed");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    simpanLog(ex.Message);
+                    MessageBox.Show("SQL Error :" + ex.Message);
                 }
+            }
+            catch (Exception ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("General Error :" + ex.Message);
             }
         }
 
