@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq.Expressions;
 using System.IO;
 using System.Drawing;
+using ExcelDataReader;
 
 namespace CRUDMahasiswaADO
 {
@@ -394,6 +395,76 @@ namespace CRUDMahasiswaADO
             {
                 fotoMhs.Image = Image.FromFile(ofd.FileName);
                 fotoMhs.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog { Filter = "Excel Workbook| *. xlsx" })
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+                    using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                    {
+                        using (var reader = ExcelReaderFactory.CreateReader(stream))
+                        {
+                            var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                            {
+                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                                {
+                                    UseHeaderRow = true
+                                }
+                            });
+                            DataTable dt = result.Tables[0];
+                            dataGridView1 = DataSource = dt;
+
+                            btnImpDB.Enabled = true;
+                            button3.Enabled = false;
+                            button4.Enabled = false;
+                            button5.Enabled = false;
+                            btnCari.Enabled = false;
+                            btnLoad.Enabled = false;
+                            btnResetData.Enabled = false;
+                            btnTestInjection.Enabled = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnImpDB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)dataGridView1.DataSource;
+
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Tidak ada data untuk diimport.");
+                    return;
+                }
+
+                int sukses = 0;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string nim = row["NIM"].ToString().Trim();
+                    string nama = row["Nama"].ToString().Trim();
+                    string jk = row["JenisKelamin"].ToString().Trim();
+                    string alamat = row["Alamat"].ToString().Trim();
+                    string kodeProdi = row["NamaProdi"].ToString().Trim();
+                    string fotoPath = row.Table.Columns.Contains("FotoPath")
+                                        ? row["FotoPath"].ToString().Trim()
+                                        : string.Empty;
+
+                    if (string.IsNullOrEmpty(nim) || string.IsNullOrEmpty(nama))
+                        continue;
+
+                    DateTime tglLahir;
+                    if (!DateTime.TryParse(row["TanggalLahir"].ToString(), out tglLahir))
+                        continue;
+                }
             }
         }
     }
