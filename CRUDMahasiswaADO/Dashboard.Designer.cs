@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpTanggalMasuk = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,8 +38,8 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.cmbTipe = new System.Windows.Forms.ComboBox();
             this.btnDataMahasiswa = new System.Windows.Forms.Button();
-            this.loadDataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.loadDataChart)).BeginInit();
+            this.chartProdi = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.chartProdi)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -109,29 +109,29 @@
             this.btnDataMahasiswa.UseVisualStyleBackColor = true;
             this.btnDataMahasiswa.Click += new System.EventHandler(this.btnDataMahasiswa_Click);
             // 
-            // loadDataChart
+            // chartProdi
             // 
-            chartArea4.Name = "ChartArea1";
-            this.loadDataChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.loadDataChart.Legends.Add(legend4);
-            this.loadDataChart.Location = new System.Drawing.Point(12, 102);
-            this.loadDataChart.Name = "loadDataChart";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.loadDataChart.Series.Add(series4);
-            this.loadDataChart.Size = new System.Drawing.Size(1012, 435);
-            this.loadDataChart.TabIndex = 9;
-            this.loadDataChart.Text = "chart1";
-            this.loadDataChart.Click += new System.EventHandler(this.loadDataChart_Click);
+            chartArea1.Name = "ChartArea1";
+            this.chartProdi.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartProdi.Legends.Add(legend1);
+            this.chartProdi.Location = new System.Drawing.Point(12, 102);
+            this.chartProdi.Name = "chartProdi";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartProdi.Series.Add(series1);
+            this.chartProdi.Size = new System.Drawing.Size(1012, 435);
+            this.chartProdi.TabIndex = 9;
+            this.chartProdi.Text = "chart1";
+            this.chartProdi.Click += new System.EventHandler(this.loadDataChart_Click);
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 598);
-            this.Controls.Add(this.loadDataChart);
+            this.Controls.Add(this.chartProdi);
             this.Controls.Add(this.btnDataMahasiswa);
             this.Controls.Add(this.cmbTipe);
             this.Controls.Add(this.btnReset);
@@ -142,7 +142,7 @@
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.loadDataChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartProdi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,6 +157,6 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.ComboBox cmbTipe;
         private System.Windows.Forms.Button btnDataMahasiswa;
-        private System.Windows.Forms.DataVisualization.Charting.Chart loadDataChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartProdi;
     }
 }

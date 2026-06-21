@@ -50,12 +50,12 @@ namespace CRUDMahasiswaADO
 
         }
 
-        private void loadDataChart_Click(object sender, EventArgs e)
+        public void loadDataChart()
         {
             chartProdi.Series.Clear();
             chartProdi.Titles.Clear();
             chartProdi.Legends.Clear();
-            chartProdi.ChartsAreas.Clear();
+            chartProdi.ChartAreas.Clear();
 
             ChartArea ca = new ChartArea("MainArea");
             ca.AxisX.Title = "Program Studi";
@@ -116,7 +116,7 @@ namespace CRUDMahasiswaADO
             chartProdi.Titles.Add(title);
             Legend legend = new Legend("MainLegend");
             legend.Docking = Docking.Right;
-            ChartProdi.Legends.Add(legend);
+            chartProdi.Legends.Add(legend);
         }
 
         private void cmbTipe_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,13 +141,13 @@ namespace CRUDMahasiswaADO
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            button = 1;
+            button = 0;
             loadDataChart();
         }
 
         private void btnDataMahasiswa_Click(object sender, EventArgs e)
         {
-            DataMahasiswa frml = new DataMahasiswa();
+            Form1 frml = new Form1();
             frml.Show();
             this.Hide();
         }
