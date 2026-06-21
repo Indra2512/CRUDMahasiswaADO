@@ -87,8 +87,8 @@ namespace CRUDMahasiswaADO
         {
             try
             {
-                bindingSource1.DataSource = dbLogic.GetMhs();
-                dataGridView1.DataSource = bindingSource1;
+                bindingSource.DataSource = dbLogic.GetMhs();
+                dataGridView1.DataSource = bindingSource;
                 DataGridViewImageColumn fotoColumn = (DataGridViewImageColumn)dataGridView1.Columns["Foto"];
                 fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
 
@@ -210,7 +210,7 @@ namespace CRUDMahasiswaADO
         {
             if (e.RowIndex >= 0)
             {
-                DataRow row = ((DataRowView)bindingSource1[e.RowIndex]).Row;
+                DataRow row = ((DataRowView)bindingSource[e.RowIndex]).Row;
                 txtNIM.Text = row[0].ToString();
                 txtNama.Text = row[1].ToString();
                 cmbJK.Text = row[2].ToString();
