@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -32,22 +33,7 @@ namespace CRUDMahasiswaADO
 
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                {
-                    conn.Open();
-                }
-
-                SqlCommand cmd = new SqlCommand("sp_Report", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@inProdi", prodi);
-                cmd.Parameters.AddWithValue("@inTglMsuk", tglmasuk.Year);
-
-                da = new SqlDataAdapter(cmd);
-
-                dtMahasiswa = new DataTable();
-                da.Fill(dtMahasiswa);
-
-                conn.Close();
+                DataTable dtMahasiswa = dbLogic.GetDataRekap(prodi, tglmasuk);
 
                 listMahasiswa.SetDataSource(dtMahasiswa);
                 crystalReportViewer1.ReportSource = listMahasiswa;
