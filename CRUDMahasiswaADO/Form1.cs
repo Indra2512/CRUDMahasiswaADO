@@ -147,59 +147,37 @@ namespace CRUDMahasiswaADO
         {
             try
             {
-               using (SqlCommand cmd = new SqlCommand("sp_UpdateMahasiswa", conn))
+                byte[] ConvertImageToBytes(PictureBox pb)
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@NIM", txtNIM.Text);
-                    cmd.Parameters.AddWithValue("@Nama", txtNama.Text);
-                    cmd.Parameters.AddWithValue("@JenisKelamin", cmbJK.Text);
-                    cmd.Parameters.AddWithValue("@TanggalLahir", dtpTanggalLahir.Value.Date);
-                    cmd.Parameters.AddWithValue("Alamat", txtAlamat.Text);
-                    cmd.Parameters.AddWithValue("@KodeProdi", txtKodeProdi.Text);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-
-                    if (conn.State == ConnectionState.Open)
+                    using (MemoryStream ms = new MemoryStream())
                     {
-                        conn.Close();
+                        pb.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        return ms.ToArray();
                     }
-                    MessageBox.Show("Data berhasil diupdate");
-                    LoadData();
-                  
                 }
-            }
+                byte[] imgBytes = ConvertImageToBytes(fotoMhs);
+                dbLogic.UpdateMhs(txtNIM.Text, txtNama.Text, txtAlamat.Text, cmbJK.Text, dtpTanggalLahir.Value.Date, txtKodeProdi.Text, imgBytes);
+                MessageBox.Show("Data mahasiswa berhasil diubah");
+                ClearForm();
+                btnLoad.PerformClick();
 
+
+            }
+            catch (SqlException ex)
+            {
+                simpanLog(ex.Message);
+                MessageBox.Show("SQL Error :" + ex.Message);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Terjadi Kesalahan: " + ex.Message);
+                simpanLog(ex.Message);
+                MessageBox.Show("General Error :" + ex.Message);
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            try
-            {
-               using (SqlCommand cmd = new SqlCommand("sp_DeleteMahasiswa", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add("@NIM", SqlDbType.Char, 11).Value = txtNIM.Text;
-
-                    conn.Open();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-
-                    if (rowsAffected < 0)
-                        MessageBox.Show("Data berhsil dihapus");
-                    else
-                        MessageBox.Show("Data gagal dihapus");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Terjadi Kesalahan: " + ex.Message);
-            }
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -299,33 +277,7 @@ namespace CRUDMahasiswaADO
 
         private void btnResetData_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    string query = @"
-                        IF OBJECT_ID('dbo.Mahasiswa_Backup') IS NOT NULL
-                        BEGIN
-                            DELETE FROM dbo.Mahasiswa;
-                            INSERT INTO dbo.Mahasiswa
-                            SELECT * FROM dbo.Mahasiswa_Backup;
-                        END";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
-                MessageBox.Show("Data berhasil direset");
-                LoadData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Reset gagal: " + ex.Message);
-            }
+         
         }
 
         private void btnTestInjection_Click(object sender, EventArgs e)
